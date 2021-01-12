@@ -1,9 +1,0 @@
-#if( $ctx.error )
-$util.qr($util.appendError($ctx.result.body, $ctx.result.statusCode))
-#else
-#set($json = $util.parseJson($ctx.result.body))
-#set($establishment = $json.data.salon)
-$util.toJson({
-  "name": $establishment.nome
-})
-#end

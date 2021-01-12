@@ -1,24 +1,37 @@
-type Estabeleciment {
+type Blog @model {
+  id: ID!
   name: String!
+  posts: [Post] @connection(keyName: "byBlog", fields: ["id"])
 }
 
-type Auth {
-  email: String,
-  password: String,
-  authClient: String
+type Post @model @key(name: "byBlog", fields: ["blogID"]) {
+  id: ID!
+  title: String!
+  blogID: ID!
+  blog: Blog @connection(fields: ["blogID"])
+  comments: [Comment] @connection(keyName: "byPost", fields: ["id"])
 }
 
-type Auth {
-  email: String,
-  password: String,
-  authClient: String
+type Comment @model @key(name: "byPost", fields: ["postID", "content"]) {
+  id: ID!
+  postID: ID!
+  post: Post @connection(fields: ["postID"])
+  content: String!
 }
 
-# /cliente/signin/social?social_provider=facebook&social_token=
+# type Estabeleciment {
+#   name: String!
+# }
+
+# type Auth {
+#   email: String,
+#   password: String,
+#   authClient: String
+# }
+
 
 type Query {
-  estabeleciment: Estabeleciment @http(url: "https://api.salaovip.com.br/salao/:id")
-  login: Auth @http(url: "https://api.salaovip.com.br/cliente/signin") 
+  # estabeleciment: Estabeleciment @http(url: "https://api.salaovip.com.br/salao/:id")
   myLambda: String @function(name: "lambdaStudy-${env}")
 }
 

@@ -69,7 +69,7 @@
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-amplifystudy-dev-194001-deployment",
-          "S3Key": "amplify-builds/lambdaStudy-4d6473456459426a6d44-build.zip"
+          "S3Key": "amplify-builds/lambdaStudy-574d494259664d426a58-build.zip"
         }
       }
     },
